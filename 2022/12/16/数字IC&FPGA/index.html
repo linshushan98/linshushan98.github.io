@@ -1,0 +1,852 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>如何开启一个项目coding？ | Linss's Blog</title><meta name="author" content="Linss"><meta name="copyright" content="Linss"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="00、如何开启一个项目coding？1、模块需求 2、子模块拆分、层级关系 3、各个子模块功能确定、输入输出定义 4、时序设计，可画时序图 5、根据时序图来构建小模块，最后连成大模块 一、基础知识1、IC流程一、规格定制 IC的规格定制包括物理指标、性能指标和功能指标。 物理指标：封装、工艺、芯片面积； 性能指标：功耗、速度； 功能指标：接口、芯片功能。 二、系统设计 系统设计是确定IC的算法模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何开启一个项目coding？">
+<meta property="og:url" content="http://example.com/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/index.html">
+<meta property="og:site_name" content="Linss&#39;s Blog">
+<meta property="og:description" content="00、如何开启一个项目coding？1、模块需求 2、子模块拆分、层级关系 3、各个子模块功能确定、输入输出定义 4、时序设计，可画时序图 5、根据时序图来构建小模块，最后连成大模块 一、基础知识1、IC流程一、规格定制 IC的规格定制包括物理指标、性能指标和功能指标。 物理指标：封装、工艺、芯片面积； 性能指标：功耗、速度； 功能指标：接口、芯片功能。 二、系统设计 系统设计是确定IC的算法模型">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2022-12-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-12-16T15:54:29.813Z">
+<meta property="article:author" content="Linss">
+<meta property="article:tag" content="博客,网站,相册,个人相册">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/12/16/%E6%95%B0%E5%AD%97IC&amp;FPGA/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '如何开启一个项目coding？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-12-16 23:54:29'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="referrer" content="no-referrer"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/photos/"><i class="fa-fw fas fa-photo-film"></i><span> Photos</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Linss's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/photos/"><i class="fa-fw fas fa-photo-film"></i><span> Photos</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">如何开启一个项目coding？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-15T16:00:00.000Z" title="发表于 2022-12-16 00:00:00">2022-12-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-12-16T15:54:29.813Z" title="更新于 2022-12-16 23:54:29">2022-12-16</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="如何开启一个项目coding？"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="00、如何开启一个项目coding？"><a href="#00、如何开启一个项目coding？" class="headerlink" title="00、如何开启一个项目coding？"></a>00、如何开启一个项目coding？</h1><p>1、模块需求</p>
+<p>2、子模块拆分、层级关系</p>
+<p>3、各个子模块功能确定、输入输出定义</p>
+<p>4、时序设计，可画时序图</p>
+<p>5、根据时序图来构建小模块，最后连成大模块</p>
+<h1 id="一、基础知识"><a href="#一、基础知识" class="headerlink" title="一、基础知识"></a>一、基础知识</h1><h2 id="1、IC流程"><a href="#1、IC流程" class="headerlink" title="1、IC流程"></a>1、IC流程</h2><p><strong>一、规格定制</strong></p>
+<p>IC的规格定制包括物理指标、性能指标和功能指标。</p>
+<p>物理指标：封装、工艺、芯片面积；</p>
+<p>性能指标：功耗、速度；</p>
+<p>功能指标：接口、芯片功能。</p>
+<p><strong>二、系统设计</strong></p>
+<p>系统设计是确定IC的算法模型和系统架构等，并通过一些高级语言、matlab等对算法模型进行仿真、架构评估，划分各个模块的具体功能，最终确定系统设计规格书。</p>
+<p><strong>三、RTL Coding</strong></p>
+<p>通过VHDL&#x2F;Verilog对各个模块进行寄存器传输级描述，现在也有通过高层次综合（HLS）来进行设计的。</p>
+<p><strong>四、功能验证</strong></p>
+<p>完成模块的RTL代码之后，要通过仿真（功能仿真&#x2F;前仿真）验证模块功能。</p>
+<p>仿真工具：Synopsys：VCS；Mentor：Modelsim；Cadence：Verilog-XL，NC-Verilog。</p>
+<p>验证语言：C&#x2F;C++，systemC，system Verilog，UVM；脚本：perl，sheel，tcl等。</p>
+<p><strong>五、逻辑综合</strong></p>
+<p>将设计的RTL翻译为门级网表(netlist)，一般是基于标准单元库（standard cell，工艺厂商已经将基本逻辑门电路、触发器设计完成并封装成库）的综合，不同库中的门电路参数不一样。存在基本门电路延时，无线延时。</p>
+<p>综合工具：Synopsys：Design Compiler(DC)；Cadence：RC。</p>
+<p><strong>六、形式验证</strong></p>
+<p>由于综合工具基于standard cell将RTL转换为了门级网表，设计的功能和时时序有可能发生变化，所以要在综合之后再做功能仿真。</p>
+<p>形式验证是从功能上对综合后的网表进行验证，等价的对比HDL和netlist。</p>
+<p>形式验证工具：Synopsys：Formality。</p>
+<p><strong>七、静态时序分析（STA）</strong></p>
+<p>除了对netlist做功能仿真以外，还要做时序仿真，静态时序分析主要是在时序上对电路进行验证，通过数学方法计算所有路径的建立时间（setup time）和保持时间（hold time）是否违例。</p>
+<p>STA工具：Synopsys：Prime Time（PT）。</p>
+<p><strong>八、可测性设计（DFT，Design For Test）</strong></p>
+<p>通过在电路中插入扫描链（Scan Chain）的方式，为了测试IC在生产制造过程中是否出现问题。</p>
+<p><strong>九、布局布线（Place and Route（PR））</strong></p>
+<p>自动布局布线，将netlist转换为版图。不仅有门电路延时，也有线延时。</p>
+<p>PR工具：Synopsys：IC Compiler(ICC)。</p>
+<p><strong>十、DRC、LVS（Design Rule Check，Layout VS SCH）</strong></p>
+<p>DRC主要检查版图是否符合工艺厂商的生产制造规则，比如线宽、线间距等。</p>
+<p>LVS是对版图和电路图的等价性检查。</p>
+<p>DRC、LVS工具：Synopsys：Hercules；Mentor：Calibre。</p>
+<p><strong>十一、流片</strong></p>
+<p>最终生成GDSII版图文件流片（Tap out）。</p>
+<hr>
+<h2 id="2、建立-x2F-保持时间"><a href="#2、建立-x2F-保持时间" class="headerlink" title="2、建立&#x2F;保持时间"></a>2、建立&#x2F;保持时间</h2><p>如果芯片tapout并发生setup violation，如何验证？</p>
+<p>1、降低频率，增加Tclk</p>
+<p>2、提高电压，缩小Tcq、Tcomb</p>
+<p>3、改变温度…                                                                                                                                                             </p>
+<p>什么是<a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/verilog2-setup-hold-time.html">建立时间、保持时间</a>？如果发生了‘Setup time&#x2F;Hold time Violation’，应该怎么做？</p>
+<p>Tclk	时钟周期，是可变的。</p>
+<p>Tcq	触发器的时钟端C到输出端Q的延时，是器件属性，固定不变</p>
+<p>Tcomb	两个触发器之间组合电路的延时，可变，可以通过设计进行优化</p>
+<p>Tsetup	建立时间，定值</p>
+<p>Thold	保持时间，定值</p>
+<p>Tskew	相邻两个触发器之间的时钟的偏移，可变</p>
+<p>在时钟路径上插入buffer，来增加时钟路径的延迟，即增加Tskew</p>
+<img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220719132257095-16586531681831.png" alt="image-20220719132257095" style="zoom:80%;">
+
+
+
+
+
+<h3 id="Setup-time-Violation："><a href="#Setup-time-Violation：" class="headerlink" title="Setup time Violation："></a>Setup time Violation：</h3><p>建立时间在<strong>静态时序分析（STA）</strong>中必须满足以下条件，才不会violation：</p>
+<p><strong>Tclk &gt; Tcq + Tcomb + Tsetup - Tskew</strong></p>
+<p>1、增大Tclk—-降低数字系统的工作频率</p>
+<p>2、减少Tcomb—-</p>
+<p>​	在组合电路之间加入寄存器，增加流水线（pipeline）</p>
+<p>​	在不改变逻辑功能的前提下，对组合电路进行优化</p>
+<p>​	减少扇出或者负载</p>
+<p>3、增加Tskew</p>
+<p>​	——在时钟路径上，插入buffer，增加时钟路径的延迟，但是不能影响hold timing</p>
+<h2 id="3、门控时钟"><a href="#3、门控时钟" class="headerlink" title="3、门控时钟"></a>3、门控时钟</h2><p>知乎——**<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/390828391">时钟门控（Clock Gating）</a>**是一种在数字IC设计中某些部分不需要时关闭时钟的技术。这里的“部分”可以是单个寄存器、模块、子系统甚至整个SoC。</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220719222434815.png" alt="image-20220719222434815"></p>
+<h2 id="4、优化路径"><a href="#4、优化路径" class="headerlink" title="4、优化路径"></a>4、优化路径</h2><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220719224538805-16586531781703.png" alt="image-20220719224538805"></p>
+<h2 id="5、jitter-amp-skew"><a href="#5、jitter-amp-skew" class="headerlink" title="5、jitter &amp; skew"></a>5、jitter &amp; skew</h2><p>clock uncertainty 包括 <a target="_blank" rel="noopener" href="https://blog.csdn.net/Reborn_Lee/article/details/81416956"><strong>jitter</strong> 和 <strong>skew</strong></a></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220719232540756-16586531822935.png" alt="image-20220719232540756"></p>
+<h2 id="6、MOS管与门电路图详情与概述"><a href="#6、MOS管与门电路图详情与概述" class="headerlink" title="6、MOS管与门电路图详情与概述"></a>6、MOS管与门电路图详情与概述</h2><p><a target="_blank" rel="noopener" href="http://www.360doc.com/content/20/1128/21/68538116_948454727.shtml">链接</a></p>
+<h2 id="7、RGB"><a href="#7、RGB" class="headerlink" title="7、RGB"></a>7、RGB</h2><p><strong>RGB的局限性</strong></p>
+<p>RGB 是我们接触最多的颜色空间，由三个通道表示一幅图像，分别为红色(R)，绿色(G)和蓝色(B)。这三种颜色的不同组合可以形成几乎所有的其他颜色。</p>
+<p>RGB 颜色空间是图像处理中最基本、最常用、面向硬件的颜色空间，比较容易理解。</p>
+<p>RGB 颜色空间利用三个颜色分量的线性组合来表示颜色，任何颜色都与这三个分量有关，而且这三个分量是高度相关的，所以连续变换颜色时并不直观，想对图像的颜色进行调整需要更改这三个分量才行。</p>
+<p>自然环境下获取的图像容易受自然光照、遮挡和阴影等情况的影响，即对亮度比较敏感。而 RGB 颜色空间的三个分量都与亮度密切相关，即只要亮度改变，三个分量都会随之相应地改变，而没有一种更直观的方式来表达。</p>
+<p>但是人眼对于这三种颜色分量的敏感程度是不一样的，在单色中，人眼对红色最不敏感，蓝色最敏感，所以 RGB 颜色空间是一种均匀性较差的颜色空间。如果颜色的相似性直接用欧氏距离来度量，其结果与人眼视觉会有较大的偏差。对于某一种颜色，我们很难推测出较为精确的三个分量数值来表示。</p>
+<p>所以，RGB 颜色空间适合于显示系统，却并不适合于图像处理。</p>
+<p><strong>RGB三原色模型</strong></p>
+<p>为了研究RGB三原色模型，我们需要从光线的底层物理组成开始分析。光也属于电磁波，有着同样的特性，这里给出了电磁波光谱图，如下图所示：</p>
+<p>图. 电磁波光谱图</p>
+<p>在电磁波波段中，400nm~700nm范围内为可见光波段，即人类肉眼可见的光。大自然的色彩均是由可见光组成的：雨后见彩虹，或者三棱镜色散后呈现的“红橙黄绿青蓝紫”，便是自然光（白光）分解的结果。分解后的光频率与波长如下表所示：</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/08d22fb3f09d468cb66d00a4c9240d0d-16586531868807.png" alt="img"></p>
+<p>注：由于青色与蓝色、绿色有一定程度的交叉，笔者参考了很多资料，均没有给出明确的界限，因此这里暂不给出具体参数。</p>
+<p>通过不同样色、不同深浅的组合，能够再现大自然五彩缤纷。而我们人眼能观察到色彩，是因为照射到物体上的电磁波（光线）反射，有人眼感应后所形成的结果。人眼能分辨出“红橙黄绿青蓝紫”，并不是因为人眼具有这7种感光细胞，而是通过另外一种组合——“RGB三原色模型”。</p>
+<p>所谓三原色模型，是认为人眼里有三种感光细胞，分别对红色、绿色和蓝色最敏感。人眼之所以看到各种颜色的光，主要是这三种细胞感觉综合的结果，而红、绿、蓝三色被称为三原色。虽然在历史上，出于不同的原因，到底将哪三种颜色作为三原色，有过争论，现在根据不同目的也有不同的选择。但是，最广为人知的，依然是红 绿蓝（RGB）三色。人眼存在着三种颜色的感光细胞，成为锥状感光细胞。</p>
+<p>人眼在光线充足的环境中，能见到五颜六色，而在在光线比较暗的情况下，只能观察到物理的敏感程度，却不能感受到五颜六色的斑斓。因此，相关研究表明，人眼还存在着另外一种可见光细胞——柱状细胞，对光线强度的感应。这四种感光细胞对波长的敏感程度如下所示：</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/4e60d9bbac2b4be985d44edbdf4749d8-16586531899699.png" alt="img"></p>
+<p>这里RGB三种感光细胞都可覆盖可见光范围，但是每一种细胞最敏感的的波长不同。分别能感应RGB的细胞，被称为红视锥细胞、绿视锥细胞、蓝视锥细胞。而每一种细胞，并非刚刚好对准响应颜色的波长中心值，这一点主要取决于人眼，而非电磁波。人眼所看到的的彩色图像，是RGB以不同强度混合进入眼睛，综合出来的结果。由这三种细胞受到不同强度的反应结果，组合出的颜色，成为“三颜刺激”。</p>
+<p>计算机中，使用最广泛的就是 RGB 三原色模型了。计算机使用离散的数字信号来描述数据，RGB 模型也不例外。对于RGB三原色的不同组合，能实现自然界真彩的斑斓。而针对同一强度的RGB三原色，可以组成2 3 &#x3D;8种颜色，如下图所示：</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/8033163f892e410f9349c2a7d72ce61d-165865319298411.png" alt="img"></p>
+<p>饱和度均为100%的RGB三原色组合模式与组合后的结果如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>R</th>
+<th>G</th>
+<th>B</th>
+<th>Result</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>RED</td>
+<td>红</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>GREEN</td>
+<td>绿</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>BLUE</td>
+<td>蓝</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>WHITE</td>
+<td>白</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>BLACK</td>
+<td>黑</td>
+</tr>
+<tr>
+<td>6</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>YELLOW</td>
+<td>黄</td>
+</tr>
+<tr>
+<td>7</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>CYAN</td>
+<td>青</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>ROYAL</td>
+<td>品</td>
+</tr>
+</tbody></table>
+<p>饱和度均为100%的RGB三原色能组合成8种颜色，那么当RGB饱和度在0~100%（色彩深度）变化，就能细分组合出更多的颜色。计算机处理的BMP图片，为24Bit的位图，即每一通道的颜色可以细分为2 8 &#x3D;256级别（RGB888），即每一通道的色彩分辨率能达到了256级。</p>
+<h2 id="8、YCbCr"><a href="#8、YCbCr" class="headerlink" title="8、YCbCr"></a>8、YCbCr</h2><p>YCbCr色域介绍</p>
+<p>YCbCr是在世界数字组织视频标准研制过程中，作为ITU - R BT.601 建议的一部分，其实是YUV经过缩放和偏移的翻版。YCbCr由Y（Luminance）、Cb（Chrominance-Blue）和Cr（Chrominance-Red）组成，其中Y表示颜色的明亮度和浓度，而Cb和Cr则分别表示颜色的蓝色浓度偏移量和红色浓度偏移量。</p>
+<p>医学研究证明，人的肉眼对视频的Y分量更敏感，因此在通过对色度分量进行子采样来减少色度分量后，肉眼将察觉不到图像质量的变化。如果只有Y信号分量，而没有U、V分量，那么这样表示的图像就是黑白灰度图像。彩色电视采用YUV空间正是为了用亮度信号Y解决彩色电视机与黑白电视机的兼容问题，使黑白电视机也能接收彩色电视信号。我们通常把YUV和YCbCr概念混在一起，但其实这两者还是有挺大的区别，主要区分介绍如下：</p>
+<p>1）首先，YUV是一种模拟信号，其色彩模型源于RGB模型，即亮度与色度分离，适合图像算法的处理，常应用于在模拟广播电视中，其中Y∈ [0,1] U,V∈[-0.5,0.5] 。</p>
+<p>2）其次，YCbCr是一种数字信号，其色彩模型源于YUV模型，它是YUV压缩和偏移的版本（所谓偏移就是从[-0.5,0.5] 偏移到[0,1 ]，因此计算时候会加128），在数字视频领域应用广泛，是计算机中应用最多的格式，包括JPEG，MPEG，H.264&#x2F;5， AVS等都采用YCbCr格式，我们通常广义的讲的YUV，严格的讲应该就是YCbCr。</p>
+<p>YCbCr格式可以继续细分，有2种格式：tv range与full range，主要区别如下：</p>
+<p>1）tv range：</p>
+<p>Y∈[16,235]，Cb∈[16-240] ，Cr∈[16-240] ，主要是广播电视采用的数字标准；</p>
+<p>2）full range：</p>
+<p>Y、Cb、Cr∈[0-255] ，主要是PC端采用的标准，所以也称pc range。</p>
+<p>关于为何tv range要量化到16-235，主要是由于YUV最终在模拟域传输，因此为了防止数模转换时引起过冲现象，于是将数字域限定在16-235。至于为什么选择16&#x2F;235，可自行了解Gibbs Phenomenon吉布斯现象，这里不再继续展开。</p>
+<p>所以RGB转YCbCr，得明确转tv range还是pc range；反之也可以通过像素值范围，去判断是tv range，还是pc range，甚至还得明确是什么格式范围，否则会导致偏色。如下图所示，为BT.601标准中YUV的UV坐标模型（U越大越蓝，V越大越红）：</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/a93f38f12c8b4407bd9b1542bd33d100-165865320032113.png" alt="img"></p>
+<p>1）针对标准SDTV（标准分辨率电视），采用ITU-R BT.601数据格式，其中YCbCr为tv range，所以YCbCr也有一定的区间范围，因此给出RGB与YCbCr的相互转换公式如下：</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/012d43736aa14239964b7cd599a0cd0c-165865320680215.png" alt="img"></p>
+<p>2）针对标准HDTV（高清晰度电视），采用ITU-R BT.709数据格式，其参数略有不同，这里给出RGB与YCbCr的相互转换公式如下：</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/b7dba1acea6f41708b80b10d751ff4d4-165865320890817.png" alt="img"></p>
+<p><strong>3）最后，针对full range或者pc range的YCbCr格式，这里YCbCr均为0-255的取值，其RGB与YCbCr的转换公式，如下：</strong></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/6d52f02cd5b64d08bcc59335148b253e-165865321092319.png" alt="img"></p>
+<p>因此在具体转换前，务必搞清楚当前的制式，否则很容易引起偏色甚至异常现象产生。另外，图像传感器可以配置输出RGB&#x2F;YCbCr，对应的手册也一般也会给出转换公式，如下所示，为OV7725传感器手册中，RGB与YCbCr的转换关系。与前面介绍的full range下的RGB转YCbCr公式，还是有一些略微的区别。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//--------------------------------------------</span></span><br><span class="line"><span class="comment">/*//Refer to &lt;OV7725 Camera Module Software Applicaton Note&gt; page 5</span></span><br><span class="line"><span class="comment">	Y 	=	(77 *R 	+ 	150*G 	+ 	29 *B)&gt;&gt;8</span></span><br><span class="line"><span class="comment">	Cb 	=	(-43*R	- 	85 *G	+ 	128*B)&gt;&gt;8 + 128</span></span><br><span class="line"><span class="comment">	Cr 	=	(128*R 	-	107*G  	-	21 *B)&gt;&gt;8 + 128</span></span><br><span class="line"><span class="comment">---&gt;</span></span><br><span class="line"><span class="comment">	Y 	=	(77 *R 	+ 	150*G 	+ 	29 *B)&gt;&gt;8</span></span><br><span class="line"><span class="comment">	Cb 	=	(-43*R	- 	85 *G	+ 	128*B + 32768)&gt;&gt;8</span></span><br><span class="line"><span class="comment">	Cr 	=	(128*R 	-	107*G  	-	21 *B + 32768)&gt;&gt;8*/</span></span><br><span class="line"><span class="comment">//--------------------------------------------</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="9、HSV"><a href="#9、HSV" class="headerlink" title="9、HSV"></a>9、HSV</h2><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NvbGxlcm9u,size_16,color_FFFFFF,t_70-165865321384821.png" alt="在这里插入图片描述"></p>
+<p>基于上述理由，在图像处理中使用较多的是 HSV 颜色空间，它比 RGB 更接近人们对彩色的感知经验。非常直观地表达颜色的色调、鲜艳程度和明暗程度，方便进行颜色的对比。</p>
+<p>在 HSV 颜色空间下，比 BGR 更容易跟踪某种颜色的物体，常用于分割指定颜色的物体。</p>
+<p>HSV 表达彩色图像的方式由三个部分组成：</p>
+<ul>
+<li>Hue（色调、色相）</li>
+<li>Saturation（饱和度、色彩纯净度）</li>
+<li>Value（明度）</li>
+</ul>
+<p>用下面这个圆柱体来表示 HSV 颜色空间，圆柱体的横截面可以看做是一个极坐标系 ，H 用极坐标的极角表示，S 用极坐标的极轴长度表示，V 用圆柱中轴的高度表示。</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/v2-e9f9c843e7d60e8f7aa7de1cd61d1818_720w-165865322349723.jpg" alt="img"></p>
+<p>Hue 用角度度量，取值范围为0～360°，表示色彩信息，即所处的光谱颜色的位置。，表示如下：</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/v2-c3c66594da5d4f86de8ed2d2abfdbba1_720w-165865322595525.jpg" alt="img"></p>
+<p>颜色圆环上所有的颜色都是光谱上的颜色，从红色开始按逆时针方向旋转，Hue&#x3D;0 表示红色，Hue&#x3D;120 表示绿色，Hue&#x3D;240 表示蓝色等等。</p>
+<p>在 GRB中 颜色由三个值共同决定，比如黄色为即 (255,255,0)；在HSV中，黄色只由一个值决定，Hue&#x3D;60即可。</p>
+<p>HSV 圆柱体的半边横截面（Hue&#x3D;60）：</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/v2-687808eb32ee353fad6663665b09b247_720w-165865322849427.jpg" alt="img"></p>
+<p>其中水平方向表示饱和度，饱和度表示颜色接近光谱色的程度。饱和度越高，说明颜色越深，越接近光谱色饱和度越低，说明颜色越浅，越接近白色。饱和度为0表示纯白色。取值范围为0～100%，值越大，颜色越饱和。</p>
+<p>竖直方向表示明度，决定颜色空间中颜色的明暗程度，明度越高，表示颜色越明亮，范围是 0-100%。明度为0表示纯黑色（此时颜色最暗）。</p>
+<p>可以通俗理解为：</p>
+<p>在Hue一定的情况下，饱和度减小，就是往光谱色中添加白色，光谱色所占的比例也在减小，饱和度减为0，表示光谱色所占的比例为零，导致整个颜色呈现白色。</p>
+<p>明度减小，就是往光谱色中添加黑色，光谱色所占的比例也在减小，明度减为0，表示光谱色所占的比例为零，导致整个颜色呈现黑色。</p>
+<p>HSV 对用户来说是一种比较直观的颜色模型。我们可以很轻松地得到单一颜色，即指定颜色角H，并让V&#x3D;S&#x3D;1，然后通过向其中加入黑色和白色来得到我们需要的颜色。增加黑色可以减小V而S不变，同样增加白色可以减小S而V不变。例如，要得到深蓝色，V&#x3D;0.4 S&#x3D;1 H&#x3D;240度。要得到浅蓝色，V&#x3D;1 S&#x3D;0.4 H&#x3D;240度。</p>
+<p>HSV 的拉伸对比度增强就是对 S 和 V 两个分量进行归一化(min-max normalize)即可，H 保持不变。</p>
+<p>RGB颜色空间更加面向于工业，而HSV更加面向于用户，大多数做图像识别这一块的都会运用HSV颜色空间，因为HSV颜色空间表达起来更加直观！</p>
+<p><strong>RGB色彩空间转HSV</strong></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/v2-50dd9aac845a9ff3712729c9ef0d9946_720w-165865323197529.jpg" alt="img"></p>
+<p>从RGB转换到HSV</p>
+<ul>
+<li>设 (r, g, b) 分别是一个颜色的红、绿和蓝坐标，它们的值是在 0 到 1 之间的实数</li>
+<li>设 max 等于 r, g, b 中的最大者</li>
+<li>设 min 等于 r, g, b 中的最小者</li>
+</ul>
+<p>​                  <img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/4f18d260bc465763fed4a95044fc253d-165865323465531.png" alt="img"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/68938b5f114a3c9f39bff8268e2141a1-165865323684033.png" alt="在这里插入图片描述"></p>
+<h2 id="10、HLS-颜色空间"><a href="#10、HLS-颜色空间" class="headerlink" title="10、HLS 颜色空间"></a>10、HLS 颜色空间</h2><p>HLS 和 HSV 比较类似，这里一起介绍。HLS 也有三个分量，hue（色相）、saturation（饱和度）、lightness（亮度）。</p>
+<p>HLS 和 HSV 的区别就是最后一个分量不同，HLS 的是 light(亮度)，HSV 的是 value(明度)。可以到这个 <a href="https://link.zhihu.com/?target=https://www.w3schools.com/colors/colors_hsl.asp">网页</a> 尝试一下。</p>
+<p>HLS 中的 L 分量为亮度，亮度为100，表示白色，亮度为0，表示黑色；HSV 中的 V 分量为明度，明度为100，表示光谱色，明度为0，表示黑色。</p>
+<p>下面是 HLS 颜色空间圆柱体：</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/v2-f9c6aba3a4712f13bc60f19309d4a2e6_720w-165865323963235.jpg" alt="img"></p>
+<p>提取白色物体时，使用 HLS 更方便，因为 HSV 中的Hue里没有白色，白色需要由S和V共同决定（S&#x3D;0, V&#x3D;100）。而在 HLS 中，白色仅由亮度L一个分量决定。所以检测白色时使用 HSL 颜色空间更准确。</p>
+<h2 id="11、AMBA总线"><a href="#11、AMBA总线" class="headerlink" title="11、AMBA总线"></a>11、AMBA总线</h2><p>高级微控制器总线结构</p>
+<p>Advanced Microcontroller Bus Architecture（AMBA）</p>
+<p>定义了高性能嵌入式微控制器的通信标准。可以将RISC处理器集成在其他IP芯核和外设中，它是有效连接IP核的“数字胶”，并且是ARM复用策略的重要组件。它不是芯片与外设之间的接口，而是ARM内核与芯片上其他元件进行通信的接口。比如Xilinx公司的Zynq芯片，就是ARM与FPGA之间的连接通路。</p>
+<h3 id="AHB"><a href="#AHB" class="headerlink" title="AHB"></a>AHB</h3><p><strong>Advanced High-performance Bus (AHB)</strong></p>
+<p>AHB总线用于高性能，高时钟工作频率模块。AHB在AMBA架构中为系统的高性能运行起到了基石作用。AHB为高性能处理器，片上内存，片外内存提供接口，同时桥接慢速外设。高性能，数据传输，多总线主控制器，突发连续传输，分步传输。</p>
+<p>AHB总线协议是AMBA的新一代总线协议，支持多种高性能总线主控制器。</p>
+<p>特性：<br>a 突发连续传输<br>b 分步传输<br>c 支持多个主控制器、单周期内主控制器处理<br>d 单<a target="_blank" rel="noopener" href="https://www.elecfans.com/tags/%E6%97%B6%E9%92%9F/">时钟</a>边沿操作<br>e 非三态操作<br>f 支持64位，128位总线<br>g 支持字节，半字节和字的传输。</p>
+<p>AHB总线通过<a target="_blank" rel="noopener" href="https://www.elecfans.com/tags/dma/">DMA</a>和<a target="_blank" rel="noopener" href="https://www.elecfans.com/tags/dsp/">DSP</a>，允许在总线上存在一个或多个主控制器。虽然APB总线上可以挂接慢速外设，但是也允许在AHB上挂接一些慢速外设作为从设备，不过它们通常还是挂接在APB总线上。</p>
+<p>AHB总线通常设计时包含以下几个设备：<br>a AHB主控制器：主控制器可以通过地址和控制信息，可以进行初始化，读，写操作。在同一时间，总线上只能有一个主控制器。<br>b AHB从设备：从设备通常是指在其地址空间内，响应主控制器发出的读写控制操作的被动设备。通过操作的成功与否反馈给其主控制器，完成数据的传输控制。<br>c AHB仲裁器：仲裁器根据用户的配置，确保在总线上同一时间只有一个主控制器拥有总线控制权限。AHB总线上只能有一个仲裁器。<br>d AHB译码器：译码器解析在总线上传输的地址和控制信息。AHB总线上只能有一个译码器。</p>
+<p><strong>一个周期中，不能够同时读写。只能要么读，要么写。</strong></p>
+<h2 id="12、DDR的行为"><a href="#12、DDR的行为" class="headerlink" title="12、DDR的行为"></a>12、DDR的行为</h2><p>—了解DDR的行为特性，以及如何设计总线，能够配合DDR行为，提高传输效率。</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724132536156-165865324299237.png" alt="image-20220724132536156"></p>
+<ul>
+<li>DDR内部结构和SRAM不同</li>
+</ul>
+<p>SRAM	-&gt;	只分1级。例如深度为4k的RAM，给一个12位地址就可以读&#x2F;写一个数据（例如数据为8bit）</p>
+<p>DDR	  -&gt;	分3级。</p>
+<p>1、select BANK；</p>
+<p>2、再activate BANK中的一条row；（BANK 和 row是一起选通的，即在同一clk下给出）</p>
+<p>再选中row中的某一个column进行读&#x2F;写。	–（行激活，列选通？）</p>
+<ul>
+<li><p>同一时间，每个BANK只能打开其中的一条row；</p>
+<p>例如有8个BANK，他们都是独立的：同一时刻，每个BANK可以各自开一条row。</p>
+<p>若要打开新row，要先发precharge。</p>
+</li>
+</ul>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724022956636-165865324561539.png" alt="image-20220724022956636"></p>
+<h2 id="·为什么要有BUS"><a href="#·为什么要有BUS" class="headerlink" title="·为什么要有BUS"></a>·为什么要有BUS</h2><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724161504207-165865324854341.png" alt="image-20220724161504207"></p>
+<p>1、统一，因为IC中的IP并不是全自己设计，有一些IP是购买的，所以需要统一、兼容，以提高互联效率。</p>
+<p>2、若系统中有新增模块，有总线的存在，能够简化各模块之间的连接线的增加，减少各模块间互连线的复杂度。结构清晰。</p>
+<p>3、方便BUS-Arbiter&#x2F;BUS-Matrix(NOC)的设计</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724124209039-165865325095443.png" alt="image-20220724124209039"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724124448946-165865325342445.png" alt="image-20220724124448946"></p>
+<p>随着DDR3 -&gt;DDR5，时钟频率的提高，read latency是增加的（write latency不会…）</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724130630951-165865325570447.png" alt="image-20220724130630951"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724131551255-165865325761749.png" alt="image-20220724131551255"></p>
+<p>Interleave操作，例如：可以利用act_b0和write_b0之间的nop空挡（spec规定），插入对别的bank操作的命令，以提升cmd密度，提高dq使用率，提升DDR带宽（效率）。</p>
+<p>注:DDR带宽效率在50%-85%左右，这取决于<strong>CTRL本身</strong>和<strong>R&#x2F;W突发长度</strong>和<strong>地址模式</strong>。</p>
+<p>例：设计SOC时，不要让多个master之访问一个BANK；尽量不要single访问。</p>
+<h2 id="13、Cache的行为"><a href="#13、Cache的行为" class="headerlink" title="13、Cache的行为"></a>13、Cache的行为</h2><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724132721317-165865326019351.png" alt="image-20220724132721317"></p>
+<p>Cache功能：</p>
+<ol>
+<li>存取近期常用数据，减少BUS的带宽消耗</li>
+<li>减少数据访问的latency</li>
+<li>Cache并非CPU独有，其他Master如有需求，也可以挂Cache减少频繁访问总线</li>
+</ol>
+<ul>
+<li><p>hit	——–读&#x2F;写的目标地址及数据，在Cache中已经有缓存。</p>
+</li>
+<li><p>miss ——–读&#x2F;写的目标地址及数据，在Cache中已经没有缓存，需要再从Cache的下行接口从Slave中取&#x2F;存回来。</p>
+</li>
+</ul>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724134801761-165865326301753.png" alt="image-20220724134801761"></p>
+<p>Read throught处理的必要性（能否只要allocate）：</p>
+<ol>
+<li>有些数据并不是经常访问的，以及cache空间有限</li>
+<li>若访问的slave不是DDR，而是IIC&#x2F;UART IP，它们的同一个寄存器地址（CPU访问的目标地址），例如RX接受数据寄存器，在数次通信时都是存放不一样的数据。若第一次将其Read allocate，则之后系统访问这个RX寄存器地址，返回的都是同样的DATA。造成系统功能错误。</li>
+</ol>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724134827041-165865326516055.png" alt="image-20220724134827041"></p>
+<p>为什么Cache write hit了，还有Write through这种处理方式？并没有节省BUS访问。</p>
+<p>为了数据一致性：这个数据是多个Master共享的数据，把数据写到内存，大家都可能去读写。（虽然不省写内存的BUS带宽，但可以省再读内存的带宽。？）</p>
+<p>为什么Cache write miss了，有No write allocate这种方式？</p>
+<p>如果目标Slave是IIC&#x2F;UART，要保证同一个TX数据寄存器地址的不同时刻的数据都往Slave发送，而不能在Cache中被覆盖。这种操作方式是必要的。（同上Read throught处理的必要性）</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724155531906-165865326744857.png" alt="image-20220724155531906"></p>
+<p>flush：当数据需要被多终端共享的时候，一次将大量数据推走</p>
+<p>invalidate：当系统知道，程序需要大量切换的时候</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724160856219-165865327019359.png" alt="image-20220724160856219"></p>
+<p>Cache Line：Cache操作的最小单元，例如flush一次操作就是操作一条Line</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724161127803-165865327290461.png" alt="image-20220724161127803"></p>
+<h2 id="14、AMBA总线"><a href="#14、AMBA总线" class="headerlink" title="14、AMBA总线"></a>14、AMBA总线</h2><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725010828934.png" alt="image-20220725010828934"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724161436077-165865327560963.png" alt="image-20220724161436077"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724161453300-165865327812865.png" alt="image-20220724161453300"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724162551987.png" alt="image-20220724162551987"></p>
+<ul>
+<li>各Slave的地址可以不连续，但不能overlap</li>
+<li>地址的路由（表）是在内嵌在RTL code中，路由的方式和协议无关，是一个公共通用的行为</li>
+</ul>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724162642875-165865328270768.png" alt="image-20220724162642875"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724163432958-165865328511270.png" alt="image-20220724163432958"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724163501733-165865328825772.png" alt="image-20220724163501733"></p>
+<p>上图定义的是 u32* —32位指针；</p>
+<p>对其加一，则是在加4Byte；code中+0x02，故最终物理地址要+8。</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724163849770-165865329097174.png" alt="image-20220724163849770"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724175400504.png" alt="image-20220724175400504"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724175441660.png" alt="image-20220724175441660"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724175854179.png" alt="image-20220724175854179"></p>
+<p><strong>要看Arbiter的处理方式。</strong>可能BUS不路由，直接return给CPU一个异常。（比较健壮的系统）</p>
+<p>若是上图用地址的高几位做decode，则会选择SRAM0，再用低几位选择存储位置，则会导致错误的修改。decode不完整，会出问题。</p>
+<p>若软件无BUG，但CPU收到较强干扰，则也有可能输出错误的访问地址。</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724180752095.png" alt="image-20220724180752095"></p>
+<h3 id="APB总线"><a href="#APB总线" class="headerlink" title="APB总线"></a>APB总线</h3><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724223932869.png" alt="image-20220724223932869"></p>
+<p>APB特性：</p>
+<ul>
+<li>低速、低功耗、低成本</li>
+<li>接口简单，适用多种外设</li>
+<li>上升沿触发</li>
+<li>非流水线操作</li>
+<li>每次操作至少两个cycle</li>
+<li>APB Brigde：对于APB slave来说是Master，对于system BUS来说是Slave。</li>
+<li>在Bridge中锁存地址信号和控制信号。</li>
+</ul>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724224946758.png" alt="image-20220724224946758"></p>
+<p>setup状态仅维持一拍，access状态可以维持多拍（有等待读&#x2F;写）</p>
+<p>地址&#x2F;写数据&#x2F;控制信号必须维持到PENABLE周期结束。</p>
+<p>一次传输结束，PSEL可以不拉低（由ACCESS转移至setup状态），立刻接着第二次传输。</p>
+<p>在下一次传输来临之前，地址&#x2F;控制信号&#x2F;写数据可不变，以降低功耗。</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724182213859.png" alt="image-20220724182213859"></p>
+<p>在PENABLE为低时，PREADY可以任意设置，但PREADY一般默认设置为1</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724224519161.png" alt="image-20220724224519161"></p>
+<p>AHB2APB桥：从AHB桥接到APB PSLVERR被映射到HRESP &#x3D; ERROR	<strong>(PSLVERR -&gt; HRESP[0])</strong>  （读&#x2F;写）</p>
+<p>AXI2APB桥：从AXI桥接到APB PSLVERR被映射到RRESP &#x3D; ERROR	   <strong>(PSLVERR -&gt; RRESP[1])</strong>  （读&#x2F;写）</p>
+<p>APB 3.0</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724230306439.png" alt="image-20220724230306439"></p>
+<p><strong>APB2APB异步桥</strong>—-verilog实现：腾讯课堂</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724231834089.png" alt="image-20220724231834089"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220724231808130.png" alt="image-20220724231808130"></p>
+<h3 id="AHB总线"><a href="#AHB总线" class="headerlink" title="AHB总线"></a>AHB总线</h3><ul>
+<li>高速总线、高性能</li>
+<li>2级流水线操作</li>
+<li>可支持多个总线主设备（最多16个）</li>
+<li>支持burst传输</li>
+<li>总线带宽：8、16、32、64、128—-hsize（可向下选择宽度）</li>
+<li>上升沿触发操作</li>
+<li>对于一个新设计建议使用AHB</li>
+</ul>
+<h3 id="AHB组成部分"><a href="#AHB组成部分" class="headerlink" title="AHB组成部分"></a>AHB组成部分</h3><p><strong>AHB主设备（master）</strong></p>
+<ul>
+<li>初始化一次读&#x2F;写操作</li>
+<li>某一时刻只允许一个和主设备使用总线，<strong>即同一时间只有 1 个主会被激活</strong>。  </li>
+<li>CPU、DMA、DSP、LCDC</li>
+</ul>
+<p><strong>AHB从设备（slave）</strong></p>
+<ul>
+<li>响应一次读&#x2F;写操作</li>
+<li>通过地址映射来选择使用哪一个从设备</li>
+<li>外部存储器控制器EMI、APB bridge</li>
+</ul>
+<p><strong>AHB仲裁器（arbiter）</strong></p>
+<ul>
+<li>仲裁器主要负责让总线上同时只有1个主在工作。</li>
+<li>仲裁协议是规定的，但是仲裁算法可以根据应用决定，比如highest priority或者fair access算法等。只挂一个主的AHB上可能不带有仲裁器。</li>
+</ul>
+<p><strong>AHB译码器（decoder）</strong></p>
+<ul>
+<li>通过地址译码来决定选择哪一个从设备</li>
+</ul>
+<h3 id="APB组成部分"><a href="#APB组成部分" class="headerlink" title="APB组成部分"></a>APB组成部分</h3><p><strong>AHB2APH Bridge</strong></p>
+<ul>
+<li>可以锁存所有的地址、数据和控制信号</li>
+<li>进行二级译码来产生APB从设备选择信号</li>
+</ul>
+<p><strong>APH总线上的所有其他模块都是APB从设备</strong></p>
+<h3 id="AMBA协议其他相关问题"><a href="#AMBA协议其他相关问题" class="headerlink" title="AMBA协议其他相关问题"></a>AMBA协议其他相关问题</h3><p><strong>与工艺无关</strong></p>
+<p><strong>没有定义电气特性</strong></p>
+<p><strong>仅在时钟周期级定义时序</strong></p>
+<ul>
+<li>提取时序参数依赖于所采用的工艺和工作频率</li>
+</ul>
+<h3 id="DMA"><a href="#DMA" class="headerlink" title="DMA"></a>DMA</h3><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725005318577.png" alt="image-20220725005318577"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725010611724.png" alt="image-20220725010611724"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725010638194.png" alt="image-20220725010638194"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725010658889.png" alt="image-20220725010658889"></p>
+<h3 id="AHB传输"><a href="#AHB传输" class="headerlink" title="AHB传输"></a>AHB传输</h3><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725011336669.png" alt="image-20220725011336669"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725011634621.png" alt="image-20220725011634621"></p>
+<h3 id="基本AHB信号"><a href="#基本AHB信号" class="headerlink" title="基本AHB信号"></a>基本AHB信号</h3><table>
+<thead>
+<tr>
+<th>信号名</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HCLK</td>
+<td>时钟</td>
+</tr>
+<tr>
+<td>HRESETn</td>
+<td>复位，低电平有效</td>
+</tr>
+<tr>
+<td>HADDR[31:0]</td>
+<td>32位系统地址总线</td>
+</tr>
+<tr>
+<td>HWDATA[31:0]</td>
+<td>写数据总线，主设备写到从设备</td>
+</tr>
+<tr>
+<td>HRDATA[31:0]</td>
+<td>读数据总线，从设备读到主设备</td>
+</tr>
+<tr>
+<td>HWRITE</td>
+<td>0：写    1：读</td>
+</tr>
+<tr>
+<td>HSELx</td>
+<td><strong>由Decoder输出</strong></td>
+</tr>
+<tr>
+<td>HTRANS[1:0]</td>
+<td>指出当前传输的状态：NONSEQ非同步（single-burst or 一次burst传输的第一个数据，地址与控制信号与上一次传输无关）、SEQ同步（表明burst传输接下来的数据，地址和上一次的传输是相关的）、IDLE停止（ADDR&#x2F;DATA无效，插在两个burst之间）、BUSY忙（ADDR&#x2F;DATA无效，插在一个burst之间）</td>
+</tr>
+<tr>
+<td>HSIZE[2:0]</td>
+<td>指明当前传输的大小: 8(字节)， 16(字)， 32(双字)等, 协议支持高达 1024 位的传送。最大值受总线的配置所限制。</td>
+</tr>
+<tr>
+<td>HBURST[2:0]</td>
+<td>0-SINGLE,  1-INCR,  2-WRAP4,  3-INCR4,  4-WRAP8,  5-INCR8,  6-WRAP16,  7-INCR16</td>
+</tr>
+<tr>
+<td>HRESP[1:0]</td>
+<td>从向主应答当前BUS传输状态: OKAY, ERROR, RETRY（不影响Master优先级） and  SPLIT（Arbiter会把Master优先级降低）.</td>
+</tr>
+<tr>
+<td>HREADY</td>
+<td>从应答主是否读写操作传输完成: 1-传输完成, 0-传输忙, 可被 驱动为低来 延续传输. 注: S 需要 HREADY 是双向信号(HREADY 做为总线上的信号， 它是 M 和 S 的输入； 同时每个 S 自己的 HREADY 信号是输出。 所以对于 S 会有两 个 HREADY 信号，一个来自总线的输入，一个自己给到多路器的输出。 )</td>
+</tr>
+<tr>
+<td>HPROT[3:0]</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="基本AHB传输"><a href="#基本AHB传输" class="headerlink" title="基本AHB传输"></a>基本AHB传输</h3><p><strong>两个阶段</strong></p>
+<ul>
+<li>地址周期，<del>只有一个cycle</del>需要看HREADY</li>
+<li>数据周期，由HREADY信号决定需要几个cycle</li>
+</ul>
+<p><strong>流水线传送</strong></p>
+<ul>
+<li>先是地址周期，后是数据周期</li>
+</ul>
+<p><strong>当前的传输状态</strong></p>
+<ul>
+<li>IDLE、BUSY、NOSEQ、SEQ</li>
+</ul>
+<p><strong>猝发传输类型HBURST</strong></p>
+<ul>
+<li>SINGLE、INCR（如何开始一次新的INCR传输？–设置一下NOSEQ）</li>
+<li>Burst传输不可跨越1K边界</li>
+</ul>
+<p><strong>HSELx：由AHB decoder通过地址映给出</strong></p>
+<p><strong>AHB slave响应信号：</strong></p>
+<ul>
+<li>HREADY传输完成、HRESP传输响应（OK、ERROR、RETRY、SPLIT）</li>
+<li>AHB slave短时间无法响应？（HREADY拉低）长时间无法响应？（发RETRY）</li>
+</ul>
+<h3 id="BURST传输"><a href="#BURST传输" class="headerlink" title="BURST传输"></a>BURST传输</h3><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725224629459.png" alt="image-20220725224629459"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725224711015.png" alt="image-20220725224711015"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725224724869.png" alt="image-20220725224724869"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725224751238.png" alt="image-20220725224751238"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725224809991.png" alt="image-20220725224809991"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725224851919.png" alt="image-20220725224851919"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725224915219.png" alt="image-20220725224915219"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725224951093.png" alt="image-20220725224951093"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725225037754.png" alt="image-20220725225037754"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725225104073.png" alt="image-20220725225104073"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725225142668.png" alt="image-20220725225142668"></p>
+<h3 id="地址译码"><a href="#地址译码" class="headerlink" title="地址译码"></a>地址译码</h3><ul>
+<li>HSELx：选择从设备：指出由主设备所选择的从设备</li>
+<li>由地址译码器来提供选择信号：in（HADDR）——Decoder——&gt; out（HSELx）</li>
+<li>一个从设备应该至少占用1KB的存储空间（end - start +1）≥0x400</li>
+<li>需要一个额外的缺省从设备来映射其他的存储地址</li>
+</ul>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725231703258.png" alt="image-20220725231703258"></p>
+<h3 id="从设备响应"><a href="#从设备响应" class="headerlink" title="从设备响应"></a>从设备响应</h3><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725231836956.png" alt="image-20220725231836956"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725232103782.png" alt="image-20220725232103782"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725232519502.png" alt="image-20220725232519502"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725232600235.png" alt="image-20220725232600235"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725232615324.png" alt="image-20220725232615324"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725232749449.png" alt="image-20220725232749449"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725233123452.png" alt="image-20220725233123452"></p>
+<h3 id="数据总线"><a href="#数据总线" class="headerlink" title="数据总线"></a>数据总线</h3><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725235409443.png" alt="image-20220725235409443"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725235602983.png" alt="image-20220725235602983"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220725235926020.png" alt="image-20220725235926020"></p>
+<p>即，大端序和小端序</p>
+<h3 id="AHB仲裁信号"><a href="#AHB仲裁信号" class="headerlink" title="AHB仲裁信号"></a>AHB仲裁信号</h3><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220726000409240.png" alt="image-20220726000409240"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220726000455271.png" alt="image-20220726000455271"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220726000633566.png" alt="image-20220726000633566"></p>
+<h2 id="15、常用仲裁算法"><a href="#15、常用仲裁算法" class="headerlink" title="15、常用仲裁算法"></a>15、常用仲裁算法</h2><h3 id="固定优先级"><a href="#固定优先级" class="headerlink" title="固定优先级"></a>固定优先级</h3><p>电路结构</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220901173918223.png" alt="image-20220901173918223"></p>
+<p>RTL code</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220901173931036.png" alt="image-20220901173931036"></p>
+<h3 id="循环优先级"><a href="#循环优先级" class="headerlink" title="循环优先级"></a>循环优先级</h3><p>电路结构</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220901174525477.png" alt="image-20220901174525477"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220901174550624.png" alt="image-20220901174550624"></p>
+<p>RTL code</p>
+<h2 id="16、存储器类型"><a href="#16、存储器类型" class="headerlink" title="16、存储器类型"></a>16、存储器类型</h2><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220914160611639.png" alt="image-20220914160611639"></p>
+<h3 id="SDRAM"><a href="#SDRAM" class="headerlink" title="SDRAM"></a>SDRAM</h3><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220916170032269.png" alt="image-20220916170032269"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220914160636156.png" alt="image-20220914160636156"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220914160753309.png" alt="image-20220914160753309"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220914160923995.png" alt="image-20220914160923995"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220914160940840.png" alt="image-20220914160940840"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220914161043686.png" alt="image-20220914161043686"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220914161632088.png" alt="image-20220914161632088"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220914161649271.png" alt="image-20220914161649271"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220914161706928.png" alt="image-20220914161706928"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20221211181731243.png" alt="image-20221211181731243"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20221211181814236.png" alt="image-20221211181814236"></p>
+<h4 id="常用操作指令"><a href="#常用操作指令" class="headerlink" title="常用操作指令"></a>常用操作指令</h4><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20221211175739094.png" alt="image-20221211175739094"></p>
+<h4 id="SDRAM操作时序——行激活，列读写"><a href="#SDRAM操作时序——行激活，列读写" class="headerlink" title="SDRAM操作时序——行激活，列读写"></a>SDRAM操作时序——行激活，列读写</h4><h5 id="1、初始化"><a href="#1、初始化" class="headerlink" title="1、初始化"></a>1、初始化</h5><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220914162650642.png" alt="image-20220914162650642"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220914162827957.png" alt="image-20220914162827957"></p>
+<ul>
+<li>配置模式寄存器的参数是由地址线来提供</li>
+<li>模式寄存器设置结束后，要等待tRSC后再进行其他操作</li>
+<li>全页：某个BANK中的一整行（ROW）数据</li>
+</ul>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20221211182741325.png" alt="image-20221211182741325"></p>
+<h5 id="2、读写操作"><a href="#2、读写操作" class="headerlink" title="2、读写操作"></a>2、读写操作</h5><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220914190755098.png" alt="image-20220914190755098"></p>
+<ul>
+<li>CS、L-BANK、行激活同时进行</li>
+</ul>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220914191032785.png" alt="image-20220914191032785"></p>
+<ul>
+<li>CS、WE、L-BANK、列读写同时进行</li>
+</ul>
+<p>tRCD——重要</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220914191354178.png" alt="image-20220914191354178"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20221211180356941.png" alt="image-20221211180356941"></p>
+<p><strong>CL——CAS Latency——读潜伏期</strong></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220914191520933.png" alt="image-20220914191520933"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20221211181314628.png" alt="image-20221211181314628"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20221211181442516.png" alt="image-20221211181442516"></p>
+<p>tWR</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220914191642626.png" alt="image-20220914191642626"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220915202655600.png" alt="image-20220915202655600"></p>
+<p>突发：<strong>同一行中的数据</strong></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220916020953483.png" alt="image-20220916020953483"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220916021100863.png" alt="image-20220916021100863"></p>
+<p>预充电&#x2F;关闭行（Precharge）</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220916021421501.png" alt="image-20220916021421501"></p>
+<p>可选是否自动预充电，例如A10。</p>
+<p><strong>激活</strong>可以理解为打开该行，<strong>预充电</strong>可以理解为关闭该行。</p>
+<p>同一个BANK中不能同时激活两行。</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20221211183616286.png" alt="image-20221211183616286"></p>
+<p>（读）预充电</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220916021743082.png" alt="image-20220916021743082"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20221211220238050.png" alt="image-20221211220238050"></p>
+<p>写预充电</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220916021909291.png" alt="image-20220916021909291"></p>
+<p><strong>写预充电</strong>与<strong>读预充电</strong>的区别：写预充电要等待写完全结束后才能发起；而读预充电指令可以和突发读操作同时进行</p>
+<h5 id="3、刷新操作"><a href="#3、刷新操作" class="headerlink" title="3、刷新操作"></a>3、刷新操作</h5><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220916022621033.png" alt="image-20220916022621033"></p>
+<p>Q：为什么有预充电操作了，还需要刷新操作？</p>
+<p>A：预充电是针对工作行，而且不是定期操作。如果很长时间（例如64ms，电容保存数据时间）没发生读写，则可能丢失数据。刷新操作每次针对一行存储体进行（这里的<strong>行</strong>，指的是4个BANK中的地址相同的“4行”）</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220916022753249.png" alt="image-20220916022753249"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20221211225216684.png" alt="image-20221211225216684"></p>
+<h1 id="二、Risc-V设计"><a href="#二、Risc-V设计" class="headerlink" title="二、Risc-V设计"></a>二、Risc-V设计</h1><h2 id="1、M-type指令"><a href="#1、M-type指令" class="headerlink" title="1、M-type指令"></a>1、M-type指令</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42294124/article/details/123312102">乘法指令实现细节</a></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQ29kZV9jb3B5MQ==,size_20,color_FFFFFF,t_70,g_se,x_16.png" alt="img"></p>
+<h1 id="三、数字信号处理"><a href="#三、数字信号处理" class="headerlink" title="三、数字信号处理"></a>三、数字信号处理</h1><h2 id="1、FIR-IIR"><a href="#1、FIR-IIR" class="headerlink" title="1、FIR IIR"></a>1、FIR IIR</h2><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220909164101251.png" alt="image-20220909164101251"></p>
+<h1 id="三、待学习"><a href="#三、待学习" class="headerlink" title="三、待学习"></a>三、待学习</h1><h2 id="1、D触发器"><a href="#1、D触发器" class="headerlink" title="1、D触发器"></a>1、D触发器</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/verilog2-gate-delay.html">链接</a></p>
+<h3 id="SR触发器"><a href="#SR触发器" class="headerlink" title="SR触发器"></a>SR触发器</h3><p>SR 触发器结构图及真值表如下所示。</p>
+<ul>
+<li>1、当 S 为低电平，G1 输出端 Q 为高电平，并反馈到 G2 输入端。如果此时 R 为高电平，则 G2 输出端 Q’ 为低电平。</li>
+<li>2、R 为低电平 S 为高电平时，分析同理。</li>
+<li>3、S 与 R 均为高电平时，如果 Q &#x3D; 1 (Q’ &#x3D; 0) , 则 Q 反馈到 G2 输入端后输出 Q’ 仍然为 0， Q’ 反馈到 G1 输入端后输出 Q 仍然是 1，呈现稳态。如果 Q &#x3D;0 (Q’ &#x3D; 1) 同理，Q 与 Q’ 的值仍然会保持不变。即 S 与 R 均为高电平时该电路具有保持的功能。</li>
+<li>4、如果 S 与 R 均为低电平，则输出 Q 与 Q’ 均为高电平，不再成互补的关系。所以此种情况是禁止出现的。</li>
+</ul>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/verilog-gate-delay-4.png" alt="img"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/verilog-gate-delay-5.png" alt="img"></p>
+<h3 id="SR锁存器"><a href="#SR锁存器" class="headerlink" title="SR锁存器"></a>SR锁存器</h3><p>在基本的 SR 触发器前面增加 2 个与非门，可构成带有控制端 SR 锁存器。</p>
+<p>SR 锁存器及其真值表如下所示。</p>
+<ul>
+<li>当 EN&#x3D;0 时，G3、G4 截止，SR 锁存器保持输出状态不变。</li>
+<li>当 EN&#x3D;1 时，与基本的 SR 触发器工作原理完全相同。</li>
+</ul>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/verilog-gate-delay-6.png" alt="img"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/verilog-gate-delay-7.png" alt="img"></p>
+<h3 id="D锁存器"><a href="#D锁存器" class="headerlink" title="D锁存器"></a>D锁存器</h3><p>基本的 SR 触发器输入端不能同时为 0， 带有控制端的 SR 锁存器输入端不能同时为 1，否则会导致输出端 Q 与 Q’ 的非互补性矛盾。</p>
+<p>为消除此种不允许的状态，在带有控制端的 SR 锁存器结构中加入取反模块，保证 2 个输入端均为相反逻辑，则形成了 D 锁存器。</p>
+<p>其结构图和真值表如下所示。</p>
+<ul>
+<li><p>1、当 EN&#x3D;1 时，输出状态随输入状态的改变而改变。</p>
+</li>
+<li><p>2、当 EN&#x3D;0 时，输出状态保持不变。</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/verilog-gate-delay-8.png" alt="img"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/verilog-gate-delay-9.png" alt="img"></p>
+</li>
+</ul>
+<p>D 锁存器是一种电平触发。</p>
+<p>如果在 EN&#x3D;1 的有效时间内，D 端信号发生多次翻转，则输出端 Q 也会发生多次翻转。这降低了电路的抗干扰能力，不是实际所需求的安全电路。</p>
+<p>为提高触发器的可靠性，增强电路抗干扰能力，发明了在特定时刻锁存信号的 D 触发器。</p>
+<h3 id="D触发器"><a href="#D触发器" class="headerlink" title="D触发器"></a>D触发器</h3><p>将两个 D 锁存器进行级联，时钟取反，便构成了一种简单的 D 触发器，又名 Flip-flop。</p>
+<p>其结构图和真值表如下所示。</p>
+<p>第一级 D 锁存器又称为主锁存器，在 CP 为低电平时锁存。第二级 D 锁存器又称为从锁存器，时钟较主锁存器相反，在 CP 为高电平时锁存。</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/verilog-gate-delay-10.png" alt="img"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/verilog-gate-delay-11.png" alt="img"></p>
+<ul>
+<li>1、CP&#x3D;1 时，主锁存器输出端 Qm 会和 D 端信号的变化保持一致，而从锁存器处于保持状态，输出 Qs 保持不变。</li>
+<li>2、CP由高电平变为低电平时，主锁存器锁存当前 D 的状态，传递到输出端 Qm 并保持不变。而从锁存器输出端 Qs 会和 Qm 的变化保持一致。此时处于锁存状态下的主锁存器输出端 Qm 会保持不变，所以 D 触发器输出端 Qs 端得到新的 Qm 值后， 也会保持不变。</li>
+</ul>
+<p>综上所述，D 触发器输出端 Qs 只会在时钟 CP 下降沿对 D 端进行信号的锁存，其余时间输出端信号具有保持的功能。</p>
+<p>将双级 D 锁存器展开为门级结构，如下图所示。</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/verilog-gate-delay-12.png" alt="img"></p>
+<h2 id="1、亚稳态"><a href="#1、亚稳态" class="headerlink" title="1、亚稳态"></a>1、亚稳态</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_29117599/article/details/123590635?app_version=5.6.0&code=app_1562916241&csdn_share_tail=%7B%22type%22:%22blog%22,%22rType%22:%22article%22,%22rId%22:%22123590635%22,%22source%22:%22Linss98%22%7D&ctrtid=rBNta&uLinkId=usr1mkqgl919blen&utm_source=app">CSDN–亚稳态</a></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/edff94afdf9eac4f49d44c18e536a66e.png" alt="img"></p>
+<h2 id="2、FIFO设计–深度计算"><a href="#2、FIFO设计–深度计算" class="headerlink" title="2、FIFO设计–深度计算"></a>2、FIFO设计–深度计算</h2><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220719235044416.png" alt="image-20220719235044416"></p>
+<h2 id="3、卡诺图"><a href="#3、卡诺图" class="headerlink" title="3、卡诺图"></a>3、卡诺图</h2><p>4、有限状态机…（三段式）</p>
+<p>5、C语言、Pyhton——排序算法…</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220719231156038.png" alt="image-20220719231156038"></p>
+<p>线性反馈移位寄存器（LSFR）</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220719233418871.png" alt="image-20220719233418871"></p>
+<h2 id="4、排序算法–中值滤波等"><a href="#4、排序算法–中值滤波等" class="headerlink" title="4、排序算法–中值滤波等"></a>4、排序算法–中值滤波等</h2><h1 id="三、笔试题"><a href="#三、笔试题" class="headerlink" title="三、笔试题"></a>三、笔试题</h1><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220719235237295.png" alt="image-20220719235237295"></p>
+<h1 id="四、verilog语法"><a href="#四、verilog语法" class="headerlink" title="四、verilog语法"></a>四、verilog语法</h1><h2 id="function-amp-task"><a href="#function-amp-task" class="headerlink" title="function &amp; task"></a>function &amp; task</h2><p>function&amp;task都是定义在一个module内部，可以用module内部定义的变量</p>
+<p>function只用于描述组合逻辑，function通常可综合</p>
+<p>可以有多个input，但是只能有一个输出（即function name）</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220809004438995.png" alt="image-20220809004438995"></p>
+<p>task内部可以用时序逻辑，task也有机会也可以综合，只要不写一些不可综合语句。</p>
+<p>task内部的赋值只能针对reg型变量</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220809004745915.png" alt="image-20220809004745915"></p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220809005532641.png" alt="image-20220809005532641"></p>
+<h1 id="四、杂项"><a href="#四、杂项" class="headerlink" title="四、杂项"></a>四、杂项</h1><h2 id="1、名词解释"><a href="#1、名词解释" class="headerlink" title="1、名词解释"></a>1、名词解释</h2><p>CDC（clock domain crossing） 跨时钟域</p>
+<p>SDRAM 是 Synchronous Dynamic Random Access Memory的缩写，即同步动态随机存取存储器</p>
+<p>DDR SDRAM 是 Double Data Rate SDRAM的缩写，是双倍速率同步动态随机存储器</p>
+<p>Async preset		异步置位</p>
+<p>decimal				十进制</p>
+<p>RTL (Register Transfer Level , 寄存器传输级)</p>
+<p>RTL（Register Transfer Level，寄存器传输级）指：不关注寄存器和组合逻辑的细节（如使用了多少逻辑门，逻辑门之间的连接拓扑结构等），通过描述寄存器到寄存器之间的逻辑功能描述电路的HDL层次。RTL级是比门级更高的抽象层次，使用RTL级语言描述硬件电路一般比门级描述简单高效得多。</p>
+<p>RTL级语言的最重要的特性是：RTL级描述是可综合的描述层次。</p>
+<p>综合（Synthesize）是指将HDL语言、原理图等设计输入翻译成由与、或、非门等基本逻辑单元组成的门级连接（网表），并根据设计目标与要求（约束条件）优化所生成的逻辑连接，输出门级网表文件。RTL级综合指将RTL级源码翻译并优化为门级网表。</p>
+<p>IP核	Intellectual Property core	知识产权核</p>
+<p>ESL (Electronic system level)	电子系统级设计与验证				</p>
+<p>有限状态机（finite-state machine，FSM)</p>
+<p>按位与&amp;	按位或|	按位异或^	按位取反~</p>
+<p>物理实现工程师——P&amp;R（place &amp; route）</p>
+<p>逻辑综合工具——DC（Design compiler）</p>
+<p>逻辑综合：将寄存器传输级（RTL，Register Transfer Level）的hdl代码转换为与工艺相关的门级网表（Gate Level Netlist）的过程</p>
+<p>格雷码</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220719223128761.png" alt="image-20220719223128761"></p>
+<p>时序路径</p>
+<p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220719232857875.png" alt="image-20220719232857875"></p>
+<h2 id="2、图标"><a href="#2、图标" class="headerlink" title="2、图标"></a>2、图标</h2><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzYwNTMy,size_16,color_FFFFFF,t_70.png" alt="img"></p>
+<p>与非门——NAND</p>
+<p>或非门——NOR</p>
+<p>异或——  ^</p>
+<h2 id="3、等等"><a href="#3、等等" class="headerlink" title="3、等等"></a>3、等等</h2><p><img src="/2022/12/16/%E6%95%B0%E5%AD%97IC&FPGA/image-20220809005754140.png" alt="image-20220809005754140"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Linss</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/12/16/%E6%95%B0%E5%AD%97IC&amp;FPGA/">http://example.com/2022/12/16/%E6%95%B0%E5%AD%97IC&amp;FPGA/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Linss's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2022/12/16/hello-world/" title="Hello World"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Hello World</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Linss</div><div class="author-info__description">没有描述</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#00%E3%80%81%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AF%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AEcoding%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">00、如何开启一个项目coding？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">2.</span> <span class="toc-text">一、基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81IC%E6%B5%81%E7%A8%8B"><span class="toc-number">2.1.</span> <span class="toc-text">1、IC流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%BB%BA%E7%AB%8B-x2F-%E4%BF%9D%E6%8C%81%E6%97%B6%E9%97%B4"><span class="toc-number">2.2.</span> <span class="toc-text">2、建立&#x2F;保持时间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Setup-time-Violation%EF%BC%9A"><span class="toc-number">2.2.1.</span> <span class="toc-text">Setup time Violation：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E9%97%A8%E6%8E%A7%E6%97%B6%E9%92%9F"><span class="toc-number">2.3.</span> <span class="toc-text">3、门控时钟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E4%BC%98%E5%8C%96%E8%B7%AF%E5%BE%84"><span class="toc-number">2.4.</span> <span class="toc-text">4、优化路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81jitter-amp-skew"><span class="toc-number">2.5.</span> <span class="toc-text">5、jitter &amp; skew</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81MOS%E7%AE%A1%E4%B8%8E%E9%97%A8%E7%94%B5%E8%B7%AF%E5%9B%BE%E8%AF%A6%E6%83%85%E4%B8%8E%E6%A6%82%E8%BF%B0"><span class="toc-number">2.6.</span> <span class="toc-text">6、MOS管与门电路图详情与概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%E3%80%81RGB"><span class="toc-number">2.7.</span> <span class="toc-text">7、RGB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8%E3%80%81YCbCr"><span class="toc-number">2.8.</span> <span class="toc-text">8、YCbCr</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9%E3%80%81HSV"><span class="toc-number">2.9.</span> <span class="toc-text">9、HSV</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10%E3%80%81HLS-%E9%A2%9C%E8%89%B2%E7%A9%BA%E9%97%B4"><span class="toc-number">2.10.</span> <span class="toc-text">10、HLS 颜色空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11%E3%80%81AMBA%E6%80%BB%E7%BA%BF"><span class="toc-number">2.11.</span> <span class="toc-text">11、AMBA总线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AHB"><span class="toc-number">2.11.1.</span> <span class="toc-text">AHB</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12%E3%80%81DDR%E7%9A%84%E8%A1%8C%E4%B8%BA"><span class="toc-number">2.12.</span> <span class="toc-text">12、DDR的行为</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%C2%B7%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89BUS"><span class="toc-number">2.13.</span> <span class="toc-text">·为什么要有BUS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13%E3%80%81Cache%E7%9A%84%E8%A1%8C%E4%B8%BA"><span class="toc-number">2.14.</span> <span class="toc-text">13、Cache的行为</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14%E3%80%81AMBA%E6%80%BB%E7%BA%BF"><span class="toc-number">2.15.</span> <span class="toc-text">14、AMBA总线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#APB%E6%80%BB%E7%BA%BF"><span class="toc-number">2.15.1.</span> <span class="toc-text">APB总线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AHB%E6%80%BB%E7%BA%BF"><span class="toc-number">2.15.2.</span> <span class="toc-text">AHB总线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AHB%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="toc-number">2.15.3.</span> <span class="toc-text">AHB组成部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#APB%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="toc-number">2.15.4.</span> <span class="toc-text">APB组成部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AMBA%E5%8D%8F%E8%AE%AE%E5%85%B6%E4%BB%96%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98"><span class="toc-number">2.15.5.</span> <span class="toc-text">AMBA协议其他相关问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DMA"><span class="toc-number">2.15.6.</span> <span class="toc-text">DMA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AHB%E4%BC%A0%E8%BE%93"><span class="toc-number">2.15.7.</span> <span class="toc-text">AHB传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%ACAHB%E4%BF%A1%E5%8F%B7"><span class="toc-number">2.15.8.</span> <span class="toc-text">基本AHB信号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%ACAHB%E4%BC%A0%E8%BE%93"><span class="toc-number">2.15.9.</span> <span class="toc-text">基本AHB传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BURST%E4%BC%A0%E8%BE%93"><span class="toc-number">2.15.10.</span> <span class="toc-text">BURST传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%B0%E5%9D%80%E8%AF%91%E7%A0%81"><span class="toc-number">2.15.11.</span> <span class="toc-text">地址译码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E8%AE%BE%E5%A4%87%E5%93%8D%E5%BA%94"><span class="toc-number">2.15.12.</span> <span class="toc-text">从设备响应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%80%BB%E7%BA%BF"><span class="toc-number">2.15.13.</span> <span class="toc-text">数据总线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AHB%E4%BB%B2%E8%A3%81%E4%BF%A1%E5%8F%B7"><span class="toc-number">2.15.14.</span> <span class="toc-text">AHB仲裁信号</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15%E3%80%81%E5%B8%B8%E7%94%A8%E4%BB%B2%E8%A3%81%E7%AE%97%E6%B3%95"><span class="toc-number">2.16.</span> <span class="toc-text">15、常用仲裁算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BA%E5%AE%9A%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">2.16.1.</span> <span class="toc-text">固定优先级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">2.16.2.</span> <span class="toc-text">循环优先级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16%E3%80%81%E5%AD%98%E5%82%A8%E5%99%A8%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.17.</span> <span class="toc-text">16、存储器类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SDRAM"><span class="toc-number">2.17.1.</span> <span class="toc-text">SDRAM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-number">2.17.1.1.</span> <span class="toc-text">常用操作指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SDRAM%E6%93%8D%E4%BD%9C%E6%97%B6%E5%BA%8F%E2%80%94%E2%80%94%E8%A1%8C%E6%BF%80%E6%B4%BB%EF%BC%8C%E5%88%97%E8%AF%BB%E5%86%99"><span class="toc-number">2.17.1.2.</span> <span class="toc-text">SDRAM操作时序——行激活，列读写</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">2.17.1.2.1.</span> <span class="toc-text">1、初始化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C"><span class="toc-number">2.17.1.2.2.</span> <span class="toc-text">2、读写操作</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E5%88%B7%E6%96%B0%E6%93%8D%E4%BD%9C"><span class="toc-number">2.17.1.2.3.</span> <span class="toc-text">3、刷新操作</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Risc-V%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.</span> <span class="toc-text">二、Risc-V设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81M-type%E6%8C%87%E4%BB%A4"><span class="toc-number">3.1.</span> <span class="toc-text">1、M-type指令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">三、数字信号处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81FIR-IIR"><span class="toc-number">4.1.</span> <span class="toc-text">1、FIR IIR</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%BE%85%E5%AD%A6%E4%B9%A0"><span class="toc-number">5.</span> <span class="toc-text">三、待学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81D%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">5.1.</span> <span class="toc-text">1、D触发器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SR%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">5.1.1.</span> <span class="toc-text">SR触发器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SR%E9%94%81%E5%AD%98%E5%99%A8"><span class="toc-number">5.1.2.</span> <span class="toc-text">SR锁存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#D%E9%94%81%E5%AD%98%E5%99%A8"><span class="toc-number">5.1.3.</span> <span class="toc-text">D锁存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#D%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">5.1.4.</span> <span class="toc-text">D触发器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E4%BA%9A%E7%A8%B3%E6%80%81"><span class="toc-number">5.2.</span> <span class="toc-text">1、亚稳态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81FIFO%E8%AE%BE%E8%AE%A1%E2%80%93%E6%B7%B1%E5%BA%A6%E8%AE%A1%E7%AE%97"><span class="toc-number">5.3.</span> <span class="toc-text">2、FIFO设计–深度计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%8D%A1%E8%AF%BA%E5%9B%BE"><span class="toc-number">5.4.</span> <span class="toc-text">3、卡诺图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E2%80%93%E4%B8%AD%E5%80%BC%E6%BB%A4%E6%B3%A2%E7%AD%89"><span class="toc-number">5.5.</span> <span class="toc-text">4、排序算法–中值滤波等</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%AC%94%E8%AF%95%E9%A2%98"><span class="toc-number">6.</span> <span class="toc-text">三、笔试题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81verilog%E8%AF%AD%E6%B3%95"><span class="toc-number">7.</span> <span class="toc-text">四、verilog语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#function-amp-task"><span class="toc-number">7.1.</span> <span class="toc-text">function &amp; task</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%9D%82%E9%A1%B9"><span class="toc-number">8.</span> <span class="toc-text">四、杂项</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A"><span class="toc-number">8.1.</span> <span class="toc-text">1、名词解释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%9B%BE%E6%A0%87"><span class="toc-number">8.2.</span> <span class="toc-text">2、图标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E7%AD%89%E7%AD%89"><span class="toc-number">8.3.</span> <span class="toc-text">3、等等</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/12/17/%E5%91%BD%E4%BB%A4%E6%B5%8B%E8%AF%95-test/" title="建站杂谈/测试/杂"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="建站杂谈/测试/杂"/></a><div class="content"><a class="title" href="/2022/12/17/%E5%91%BD%E4%BB%A4%E6%B5%8B%E8%AF%95-test/" title="建站杂谈/测试/杂">建站杂谈/测试/杂</a><time datetime="2022-12-17T10:15:53.000Z" title="发表于 2022-12-17 18:15:53">2022-12-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/17/myfirstpost/" title="无题"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/12/17/myfirstpost/" title="无题">无题</a><time datetime="2022-12-17T04:57:51.070Z" title="发表于 2022-12-17 12:57:51">2022-12-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/16/hello-world/" title="Hello World"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2022/12/16/hello-world/" title="Hello World">Hello World</a><time datetime="2022-12-16T12:57:21.893Z" title="发表于 2022-12-16 20:57:21">2022-12-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/16/%E6%95%B0%E5%AD%97IC&amp;FPGA/" title="如何开启一个项目coding？"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何开启一个项目coding？"/></a><div class="content"><a class="title" href="/2022/12/16/%E6%95%B0%E5%AD%97IC&amp;FPGA/" title="如何开启一个项目coding？">如何开启一个项目coding？</a><time datetime="2022-12-15T16:00:00.000Z" title="发表于 2022-12-16 00:00:00">2022-12-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Linss</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
